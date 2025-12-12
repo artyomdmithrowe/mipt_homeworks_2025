@@ -1,0 +1,12 @@
+pre-commit:
+  parallel: true
+  commands:
+    mypy:
+      glob: "*.py"
+      run: mypy {staged_files}
+    ruff:
+      glob: "*.py"
+      run: ruff check {staged_files}
+    ruff-format:
+      glob: "*.py"
+      run: ruff format {staged_files} --check

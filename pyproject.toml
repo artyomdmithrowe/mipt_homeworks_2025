@@ -3,13 +3,13 @@ name = "mipt-homeworks-2025"
 version = "0.1.0"
 description = "MIPT homeworks from base to production service"
 readme = "README.md"
-license = {text = "Apache License 2.0"}
+license = { text = "Apache License 2.0" }
 requires-python = "==3.13.*"
 dependencies = []
 
 [dependency-groups]
 lint = [
-    "flakeheaven>=3.3.0",
+    "lefthook>=2.0.3",
     "mypy>=1.18.2",
     "ruff>=0.14.0",
 ]

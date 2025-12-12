@@ -3,61 +3,12 @@ revision = 3
 requires-python = "==3.13.*"
 
 [[package]]
-name = "colorama"
-version = "0.4.6"
+name = "lefthook"
+version = "2.0.3"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/d8/53/6f443c9a4a8358a93a6792e2acffb9d9d5cb0a5cfd8802644b7b1c9a02e4/colorama-0.4.6.tar.gz", hash = "sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44", size = 27697, upload-time = "2022-10-25T02:36:22.414Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/14/87/e758be347eef5f299ee44bdd404262b706117f0766bd2c93e6cd639e638c/lefthook-2.0.3.tar.gz", hash = "sha256:b1d0455920529cdb73b5affce178cf0998d7b5438ec6334c2b958311c339f4e9", size = 54400302, upload-time = "2025-11-10T07:51:46.443Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d1/d6/3965ed04c63042e047cb6a3e6ed1a63a35087b6a609aa3a15ed8ac56c221/colorama-0.4.6-py2.py3-none-any.whl", hash = "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6", size = 25335, upload-time = "2022-10-25T02:36:20.889Z" },
-]
-
-[[package]]
-name = "entrypoints"
-version = "0.4"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/ea/8d/a7121ffe5f402dc015277d2d31eb82d2187334503a011c18f2e78ecbb9b2/entrypoints-0.4.tar.gz", hash = "sha256:b706eddaa9218a19ebcd67b56818f05bb27589b1ca9e8d797b74affad4ccacd4", size = 13974, upload-time = "2022-02-02T21:30:28.172Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/35/a8/365059bbcd4572cbc41de17fd5b682be5868b218c3c5479071865cab9078/entrypoints-0.4-py3-none-any.whl", hash = "sha256:f174b5ff827504fd3cd97cc3f8649f3693f51538c7e4bdf3ef002c8429d42f9f", size = 5294, upload-time = "2022-02-02T21:30:26.024Z" },
-]
-
-[[package]]
-name = "flake8"
-version = "4.0.1"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "mccabe" },
-    { name = "pycodestyle" },
-    { name = "pyflakes" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/e6/84/d8db922289195c435779b4ca3a3f583f263f87e67954f7b2e83c8da21f48/flake8-4.0.1.tar.gz", hash = "sha256:806e034dda44114815e23c16ef92f95c91e4c71100ff52813adf7132a6ad870d", size = 154905, upload-time = "2021-10-11T12:42:48.941Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/34/39/cde2c8a227abb4f9ce62fe55586b920f438f1d2903a1a22514d0b982c333/flake8-4.0.1-py2.py3-none-any.whl", hash = "sha256:479b1304f72536a55948cb40a32dce8bb0ffe3501e26eaf292c7e60eb5e0428d", size = 64091, upload-time = "2021-10-11T12:42:47.401Z" },
-]
-
-[[package]]
-name = "flakeheaven"
-version = "3.3.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "colorama" },
-    { name = "entrypoints" },
-    { name = "flake8" },
-    { name = "pygments" },
-    { name = "toml" },
-    { name = "urllib3" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/a6/a7/ae6688b2966e40c87633733bd604aa39f40e0dfdce8eae29cc90e7e6e3c1/flakeheaven-3.3.0.tar.gz", hash = "sha256:eb07860e028ff8dd56cce742c4766624a37a4ce397fd34300254ab623d13047b", size = 33508, upload-time = "2023-04-10T21:36:03.998Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/51/bc/a110e3ca8e8fa9dfb8857429f1e0ff3e95005aa12f63c3a6fb07d6b6291f/flakeheaven-3.3.0-py3-none-any.whl", hash = "sha256:ae246197a178845b30b63fc03023f7ba925cc84cc96314ec19807dafcd6b39a3", size = 46318, upload-time = "2023-04-10T21:36:02.176Z" },
-]
-
-[[package]]
-name = "mccabe"
-version = "0.6.1"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/06/18/fa675aa501e11d6d6ca0ae73a101b2f3571a565e0f7d38e062eec18a91ee/mccabe-0.6.1.tar.gz", hash = "sha256:dd8d182285a0fe56bace7f45b5e7d1a6ebcbf524e8f3bd87eb0f125271b8831f", size = 8612, upload-time = "2017-01-26T22:13:15.699Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/87/89/479dc97e18549e21354893e4ee4ef36db1d237534982482c3681ee6e7b57/mccabe-0.6.1-py2.py3-none-any.whl", hash = "sha256:ab8a6258860da4b6677da4bd2fe5dc2c659cff31b3ee4f7f5d64e79735b80d42", size = 8556, upload-time = "2017-01-26T22:13:14.36Z" },
+    { url = "https://files.pythonhosted.org/packages/e7/fe/5396b276d8b3160d12c9b131ee38d59e53594d3bf82ef0c626740dfa0ea8/lefthook-2.0.3-py3-none-any.whl", hash = "sha256:bffba2bbbe12e86705a83c575b4c63715c258ef24c16ddde3b40eed6d298485b", size = 54658363, upload-time = "2025-11-10T07:51:43.092Z" },
 ]
 
 [[package]]
@@ -67,7 +18,7 @@ source = { virtual = "." }
 
 [package.dev-dependencies]
 lint = [
-    { name = "flakeheaven" },
+    { name = "lefthook" },
     { name = "mypy" },
     { name = "ruff" },
 ]
@@ -76,7 +27,7 @@ lint = [
 
 [package.metadata.requires-dev]
 lint = [
-    { name = "flakeheaven", specifier = ">=3.3.0" },
+    { name = "lefthook", specifier = ">=2.0.3" },
     { name = "mypy", specifier = ">=1.18.2" },
     { name = "ruff", specifier = ">=0.14.0" },
 ]
@@ -120,33 +71,6 @@ wheels = [
 ]
 
 [[package]]
-name = "pycodestyle"
-version = "2.8.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/08/dc/b29daf0a202b03f57c19e7295b60d1d5e1281c45a6f5f573e41830819918/pycodestyle-2.8.0.tar.gz", hash = "sha256:eddd5847ef438ea1c7870ca7eb78a9d47ce0cdb4851a5523949f2601d0cbbe7f", size = 102299, upload-time = "2021-10-11T00:56:27.496Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/15/94/bc43a2efb7b8615e38acde2b6624cae8c9ec86faf718ff5676c5179a7714/pycodestyle-2.8.0-py2.py3-none-any.whl", hash = "sha256:720f8b39dde8b293825e7ff02c475f3077124006db4f440dcbc9a20b76548a20", size = 42112, upload-time = "2021-10-11T00:56:25.599Z" },
-]
-
-[[package]]
-name = "pyflakes"
-version = "2.4.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/15/60/c577e54518086e98470e9088278247f4af1d39cb43bcbd731e2c307acd6a/pyflakes-2.4.0.tar.gz", hash = "sha256:05a85c2872edf37a4ed30b0cce2f6093e1d0581f8c19d7393122da7e25b2b24c", size = 69101, upload-time = "2021-10-06T20:39:50.936Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/43/fb/38848eb494af7df9aeb2d7673ace8b213313eb7e391691a79dbaeb6a838f/pyflakes-2.4.0-py2.py3-none-any.whl", hash = "sha256:3bb3a3f256f4b7968c9c788781e4ff07dce46bdf12339dcda61053375426ee2e", size = 69704, upload-time = "2021-10-06T20:39:49.185Z" },
-]
-
-[[package]]
-name = "pygments"
-version = "2.19.2"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/b0/77/a5b8c569bf593b0140bde72ea885a803b82086995367bf2037de0159d924/pygments-2.19.2.tar.gz", hash = "sha256:636cb2477cec7f8952536970bc533bc43743542f70392ae026374600add5b887", size = 4968631, upload-time = "2025-06-21T13:39:12.283Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/c7/21/705964c7812476f378728bdf590ca4b771ec72385c533964653c68e86bdc/pygments-2.19.2-py3-none-any.whl", hash = "sha256:86540386c03d588bb81d44bc3928634ff26449851e99741617ecb9037ee5ec0b", size = 1225217, upload-time = "2025-06-21T13:39:07.939Z" },
-]
-
-[[package]]
 name = "ruff"
 version = "0.14.0"
 source = { registry = "https://pypi.org/simple" }
@@ -173,28 +97,10 @@ wheels = [
 ]
 
 [[package]]
-name = "toml"
-version = "0.10.2"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/be/ba/1f744cdc819428fc6b5084ec34d9b30660f6f9daaf70eead706e3203ec3c/toml-0.10.2.tar.gz", hash = "sha256:b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f", size = 22253, upload-time = "2020-11-01T01:40:22.204Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/44/6f/7120676b6d73228c96e17f1f794d8ab046fc910d781c8d151120c3f1569e/toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b", size = 16588, upload-time = "2020-11-01T01:40:20.672Z" },
-]
-
-[[package]]
 name = "typing-extensions"
 version = "4.15.0"
 source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/72/94/1a15dd82efb362ac84269196e94cf00f187f7ed21c242792a923cdb1c61f/typing_extensions-4.15.0.tar.gz", hash = "sha256:0cea48d173cc12fa28ecabc3b837ea3cf6f38c6d1136f85cbaaf598984861466", size = 109391, upload-time = "2025-08-25T13:49:26.313Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/18/67/36e9267722cc04a6b9f15c7f3441c2363321a3ea07da7ae0c0707beb2a9c/typing_extensions-4.15.0-py3-none-any.whl", hash = "sha256:f0fa19c6845758ab08074a0cfa8b7aecb71c999ca73d62883bc25cc018c4e548", size = 44614, upload-time = "2025-08-25T13:49:24.86Z" },
-]
-
-[[package]]
-name = "urllib3"
-version = "2.5.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/15/22/9ee70a2574a4f4599c47dd506532914ce044817c7752a79b6a51286319bc/urllib3-2.5.0.tar.gz", hash = "sha256:3fc47733c7e419d4bc3f6b3dc2b4f890bb743906a30d56ba4a5bfa4bbff92760", size = 393185, upload-time = "2025-06-18T14:07:41.644Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/a7/c2/fe1e52489ae3122415c51f387e221dd0773709bad6c6cdaa599e8a2c5185/urllib3-2.5.0-py3-none-any.whl", hash = "sha256:e6b01673c0fa6a13e374b50871808eb3bf7046c4b125b216f6bf1cc604cff0dc", size = 129795, upload-time = "2025-06-18T14:07:40.39Z" },
 ]
