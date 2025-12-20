@@ -1,6 +1,6 @@
 SRC_FOLDERS=$(wildcard homework_*)
 
-lint:
+lint-check:
 	ruff check $(SRC_FOLDERS)
 # 	flakeheaven lint $(SRC_FOLDERS)
 	mypy $(SRC_FOLDERS)

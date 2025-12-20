@@ -1,4 +1,5 @@
 from typing import Dict
+from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
@@ -13,8 +14,10 @@ app = FastAPI(
     redoc_url="/redoc",
 )
 
+static_dir = Path("static")
+static_dir.mkdir(parents=True, exist_ok=True)
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/static", StaticFiles(directory=static_dir), name="static")
 app.include_router(search.router, prefix="/api/v1/search", tags=["search"])
 
 
