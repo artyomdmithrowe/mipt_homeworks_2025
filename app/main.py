@@ -1,5 +1,6 @@
 from typing import Dict
 from pathlib import Path
+from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
@@ -7,17 +8,22 @@ from fastapi.staticfiles import StaticFiles
 from app.api.endpoints import search
 from app.core.config import settings
 
+static_dir = Path("static")
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    static_dir.mkdir(parents=True, exist_ok=True)
+    app.mount("/static", StaticFiles(directory=static_dir), name="static")
+    yield
+
 app = FastAPI(
     title=settings.APP_NAME,
     version=settings.APP_VERSION,
     docs_url="/docs",
     redoc_url="/redoc",
+    lifespan=lifespan,
 )
-
-static_dir = Path("static")
-static_dir.mkdir(parents=True, exist_ok=True)
-
-app.mount("/static", StaticFiles(directory=static_dir), name="static")
 app.include_router(search.router, prefix="/api/v1/search", tags=["search"])
 
 
