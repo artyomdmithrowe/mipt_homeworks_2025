@@ -64,8 +64,6 @@ class GitHubService:
         """
 
         static_dir = Path(settings.STATIC_DIR)
-        static_dir.mkdir(exist_ok=True, parents=True)
-
         filepath = static_dir / filename
 
         csv_headers: List[str] = [
