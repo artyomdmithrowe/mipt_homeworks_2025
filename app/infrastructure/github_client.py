@@ -21,6 +21,10 @@ class GitHubClient:
         if settings.GITHUB_TOKEN is not None:
             self.headers["Authorization"] = f"Bearer {settings.GITHUB_TOKEN}"
 
+        self.client = httpx.AsyncClient(
+            timeout=settings.REQ_TIMEOUT, headers=self.headers, base_url=self.base_url
+        )
+
     async def search_repositories(
         self, search_query: str, page_number: int = 1, results_per_page: int = 100
     ) -> Dict[str, Any]:
@@ -45,11 +49,10 @@ class GitHubClient:
             "order": "desc",
         }
 
-        async with httpx.AsyncClient(timeout=settings.REQ_TIMEOUT) as client:
-            resp = await client.get(url, params=params, headers=self.headers)
-            resp.raise_for_status()
-            data: Dict[str, Any] = resp.json()
-            return data
+        resp = await self.client.get(url, params=params, headers=self.headers)
+        resp.raise_for_status()
+        data: Dict[str, Any] = resp.json()
+        return data
 
     async def search_repositories_paginated(
         self, query: str, limit: int, offset: int = 0
