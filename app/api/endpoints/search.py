@@ -7,6 +7,36 @@ from app.services.github_service import GitHubService
 router = APIRouter()
 
 
+def get_github_client() -> GitHubClient:
+    """
+    Returns an instance of the GitHubClient class.
+
+    The GitHubClient class is used to make requests to the GitHub API.
+
+    Returns:
+        GitHubClient: An instance of the GitHubClient class.
+    """
+
+    return GitHubClient()
+
+
+def get_github_service(client: GitHubClient = Depends(get_github_client)) -> GitHubService:
+    """
+    Returns an instance of the GitHubService class.
+
+    The GitHubService class is used to interact with the GitHub API and to save
+    the search results to a CSV file.
+
+    Args:
+        client: GitHubClient instance used to make requests to the GitHub API
+
+    Returns:
+        GitHubService: An instance of the GitHubService class
+    """
+
+    return GitHubService(client)
+
+
 @router.get(
     "/repositories",
     response_model=SearchResponse,
@@ -14,6 +44,7 @@ router = APIRouter()
 )
 async def search_repositories(
     search_params: SearchParameters = Depends(),
+    github_service: GitHubService = Depends(get_github_service),
 ) -> SearchResponse:
     """
     Searches GitHub repositories by language and filters,
@@ -31,9 +62,6 @@ async def search_repositories(
     """
 
     try:
-        github_client = GitHubClient()
-        github_service = GitHubService(github_client)
-
         search_result = await github_service.search_and_save_repositories(
             language=search_params.lang,
             limit=search_params.limit,
