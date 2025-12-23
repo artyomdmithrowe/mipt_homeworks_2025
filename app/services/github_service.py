@@ -1,19 +1,16 @@
-import csv
-from pathlib import Path
-from typing import Any, Dict, List, Optional
-
-import aiofiles
+from typing import Dict, Optional
 
 from app.core.config import settings
 from app.infrastructure.github_client import GitHubClient
-from app.schemas.search import GitHubRepository
+from app.services.csv_writer import CsvWriter
 
 
 class GitHubService:
     """Service for searching and saving repositories to CSV."""
 
-    def __init__(self, client: GitHubClient):
+    def __init__(self, client: GitHubClient, writer: CsvWriter | None = None):
         self.client = client
+        self.writer = writer or CsvWriter()
 
     def _build_search_query(
         self,
@@ -49,35 +46,6 @@ class GitHubService:
             query_parts.append(f"forks:<={maximum_forks}")
 
         return " ".join(query_parts)
-
-    async def _save_to_csv(
-        self, filename: str, repositories: List[GitHubRepository]
-    ) -> None:
-        """
-        Saves a list of repositories to a CSV file.
-
-        Args:
-            filename: Filename of the CSV file
-            repositories: List of GitHubRepository objects
-
-        Returns:
-            None
-        """
-
-        static_dir = Path(settings.STATIC_DIR)
-        filepath = static_dir / filename
-
-        csv_headers = GitHubRepository.get_csv_headers()
-        rows = [repo.to_csv_dict() for repo in repositories]
-
-        async with aiofiles.open(
-            filepath, mode="w", newline="", encoding="utf-8"
-        ) as file:
-            writer = csv.DictWriter(file, fieldnames=csv_headers)
-            await writer.writeheader()
-
-            for row in rows:
-                await writer.writerow(row)
 
     async def search_and_save_repositories(
         self,
@@ -128,7 +96,7 @@ class GitHubService:
             offset=offset,
         )
 
-        await self._save_to_csv(filename=filename, repositories=repositories)
+        await self.writer.write_repositories(filename=filename, repositories=repositories)
 
         return {
             "filename": filename,
