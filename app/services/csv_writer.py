@@ -9,6 +9,14 @@ from app.schemas.search import GitHubRepository
 
 
 class CsvWriter:
+    """Utility class for writing repository search results to CSV.
+
+    This is a thin wrapper around the standard library `csv.DictWriter`
+    adapted to work with `aiofiles` for async file operations. The class
+    exposes a single static method `write_repositories` which accepts a
+    filename and a list of `GitHubRepository` objects.
+    """
+
     @staticmethod
     async def write_repositories(
         filename: str, repositories: List[GitHubRepository]
