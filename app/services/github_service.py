@@ -6,6 +6,7 @@ import aiofiles
 
 from app.core.config import settings
 from app.infrastructure.github_client import GitHubClient
+from app.schemas.search import GitHubRepository
 
 
 class GitHubService:
@@ -50,14 +51,14 @@ class GitHubService:
         return " ".join(query_parts)
 
     async def _save_to_csv(
-        self, filename: str, repositories: List[Dict[str, Any]]
+        self, filename: str, repositories: List[GitHubRepository]
     ) -> None:
         """
         Saves a list of repositories to a CSV file.
 
         Args:
             filename: Filename of the CSV file
-            repositories: List of repository objects
+            repositories: List of GitHubRepository objects
 
         Returns:
             None
@@ -89,26 +90,22 @@ class GitHubService:
         for repo in repositories:
             rows.append(
                 {
-                    "name": repo.get("name", ""),
-                    "full_name": repo.get("full_name", ""),
-                    "html_url": repo.get("html_url", ""),
-                    "description": repo.get("description", ""),
-                    "language": repo.get("language", ""),
-                    "stargazers_count": repo.get("stargazers_count", 0),
-                    "forks_count": repo.get("forks_count", 0),
-                    "watchers_count": repo.get("watchers_count", 0),
-                    "open_issues_count": repo.get("open_issues_count", 0),
-                    "size": repo.get("size", 0),
-                    "created_at": repo.get("created_at", ""),
-                    "updated_at": repo.get("updated_at", ""),
-                    "pushed_at": repo.get("pushed_at", ""),
-                    "owner_login": repo.get("owner", {}).get("login", ""),
-                    "owner_url": repo.get("owner", {}).get("html_url", ""),
-                    "license_name": (
-                        repo.get("license", {}).get("name", "")
-                        if repo.get("license")
-                        else ""
-                    ),
+                    "name": repo.name,
+                    "full_name": repo.full_name,
+                    "html_url": repo.html_url,
+                    "description": repo.description or "",
+                    "language": repo.language or "",
+                    "stargazers_count": repo.stargazers_count,
+                    "forks_count": repo.forks_count,
+                    "watchers_count": repo.watchers_count,
+                    "open_issues_count": repo.open_issues_count,
+                    "size": repo.size,
+                    "created_at": repo.created_at,
+                    "updated_at": repo.updated_at,
+                    "pushed_at": repo.pushed_at,
+                    "owner_login": repo.owner.login,
+                    "owner_url": repo.owner.html_url,
+                    "license_name": repo.license.name if repo.license else "",
                 }
             )
 

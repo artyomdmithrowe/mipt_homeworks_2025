@@ -1,8 +1,7 @@
-from typing import Any, Dict, List
-
 import httpx
 
 from app.core.config import settings
+from app.schemas.search import GitHubRepository, GitHubSearchResponse
 
 
 class GitHubClient:
@@ -27,7 +26,7 @@ class GitHubClient:
 
     async def search_repositories(
         self, search_query: str, page_number: int = 1, results_per_page: int = 100
-    ) -> Dict[str, Any]:
+    ) -> GitHubSearchResponse:
         """
         Searches GitHub repositories based on the given query.
 
@@ -37,7 +36,7 @@ class GitHubClient:
             results_per_page: Number of results per page
 
         Returns:
-            A dictionary containing the search results
+            GitHubSearchResponse with structured repository data
         """
 
         url = f"{self.base_url}/search/repositories"
@@ -51,12 +50,12 @@ class GitHubClient:
 
         resp = await self.client.get(url, params=params, headers=self.headers)
         resp.raise_for_status()
-        data: Dict[str, Any] = resp.json()
-        return data
+        data = resp.json()
+        return GitHubSearchResponse.model_validate(data)
 
     async def search_repositories_paginated(
         self, query: str, limit: int, offset: int = 0
-    ) -> List[Dict[str, Any]]:
+    ) -> list[GitHubRepository]:
         """
         Fetch multiple pages of results to reach desired limit.
 
@@ -66,21 +65,21 @@ class GitHubClient:
             offset: Number of repositories to skip
 
         Returns:
-            List of repository objects
+            List of GitHubRepository objects
         """
 
-        repositories: List[Dict[str, Any]] = []
+        repositories: list[GitHubRepository] = []
         page_number: int = 1
 
         while len(repositories) < offset + limit:
             try:
-                page_data: Dict[str, Any] = await self.search_repositories(
+                page_data: GitHubSearchResponse = await self.search_repositories(
                     search_query=query,
                     page_number=page_number,
                     results_per_page=settings.GITHUB_PER_PAGE,
                 )
 
-                page_repositories: List[Dict[str, Any]] = page_data.get("items", [])
+                page_repositories: list[GitHubRepository] = page_data.items
                 if not page_repositories:
                     break
 
