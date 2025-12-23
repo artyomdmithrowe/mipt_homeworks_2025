@@ -67,47 +67,8 @@ class GitHubService:
         static_dir = Path(settings.STATIC_DIR)
         filepath = static_dir / filename
 
-        csv_headers: List[str] = [
-            "name",
-            "full_name",
-            "html_url",
-            "description",
-            "language",
-            "stargazers_count",
-            "forks_count",
-            "watchers_count",
-            "open_issues_count",
-            "size",
-            "created_at",
-            "updated_at",
-            "pushed_at",
-            "owner_login",
-            "owner_url",
-            "license_name",
-        ]
-
-        rows: List[Dict[str, Any]] = []
-        for repo in repositories:
-            rows.append(
-                {
-                    "name": repo.name,
-                    "full_name": repo.full_name,
-                    "html_url": repo.html_url,
-                    "description": repo.description or "",
-                    "language": repo.language or "",
-                    "stargazers_count": repo.stargazers_count,
-                    "forks_count": repo.forks_count,
-                    "watchers_count": repo.watchers_count,
-                    "open_issues_count": repo.open_issues_count,
-                    "size": repo.size,
-                    "created_at": repo.created_at,
-                    "updated_at": repo.updated_at,
-                    "pushed_at": repo.pushed_at,
-                    "owner_login": repo.owner.login,
-                    "owner_url": repo.owner.html_url,
-                    "license_name": repo.license.name if repo.license else "",
-                }
-            )
+        csv_headers = GitHubRepository.get_csv_headers()
+        rows = [repo.to_csv_dict() for repo in repositories]
 
         async with aiofiles.open(
             filepath, mode="w", newline="", encoding="utf-8"
