@@ -58,7 +58,8 @@ async def search_repositories(
         and the download URL.
 
     Raises:
-        HTTPException with status code 500 if the search fails.
+        HTTPException(404): If no repositories are found.
+        HTTPException(500): If an unexpected error occurs.
     """
 
     try:
@@ -71,15 +72,19 @@ async def search_repositories(
             minimum_forks=search_params.forks_min,
             maximum_forks=search_params.forks_max,
         )
-
-        return SearchResponse(
-            message="CSV file created successfully",
-            filename=search_result["filename"],
-            download_url=f"/static/{search_result['filename']}",
+    except ValueError as error:
+        raise HTTPException(
+            status_code=404,
+            detail=str(error),
         )
-
     except Exception as error:
         raise HTTPException(
             status_code=500,
-            detail=f"Search failed: {str(error)}",
+            detail=f"Internal Server Error: {str(error)}",
         )
+
+    return SearchResponse(
+        message="CSV file created successfully",
+        filename=search_result["filename"],
+        download_url=f"/static/{search_result['filename']}",
+    )
